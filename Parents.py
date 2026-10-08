@@ -51,7 +51,11 @@ class Entity:
     def gainHealth(self, healthGained):
         self.health += healthGained
     
-    
+def run(self):
+    if random.randint(1, 100) <= 50:
+        return True
+    return False
+
 
 
 class Player(Entity):
