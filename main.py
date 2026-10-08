@@ -4,17 +4,6 @@ from enemies import Goblin, Skeleton, Zombie
 from playerCharacters import Adventurer, Knight, Mage, Rogue
 
 
-
-# Choose your player
-
-print("Choose your character:")
-print("1. Adventurer")
-print("2. Knight")
-print("3. Mage")
-print("4. Rogue")
-
-choice = input("> ")
-
 player = None
 
 while player is None:
@@ -69,6 +58,7 @@ def battleLoop():
         print("1. Attack")
         print("2. Heavy Attack")
         print("3. Block")
+        print("4. Run")
 
         choice = input("> ")
 
@@ -112,11 +102,23 @@ def battleLoop():
 
             print(f"{player.name}: {player.health:.0f} HP")
 
+        elif choice == "4":
+
+            if player.run():
+                print("You escaped!")
+                break
+
+            else:
+                print("You failed to escape!")
+
+                currentEnemy.attack(player)
+                print(f"{player.name}: {player.health:.0f} HP")
+
         else:
             print("Invalid choice!")
 
-    if player.health <= 0:
-        print("You were defeated!")
+        if player.health <= 0:
+            print("You were defeated!")
 
 
 battleLoop()
